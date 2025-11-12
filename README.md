@@ -14,17 +14,6 @@ GOOS=windows go build -o relaybox.exe ./cmd/relaybox
 
 You can also find prebuilt binaries on the Releases page.
 
-## Releasing
-
-Tagged releases are automated via [GoReleaser](https://goreleaser.com/). Push a semver tag (for example `v1.2.3`) and GitHub Actions will build the Windows artefact and publish it on GitHub Releases:
-
-```bash
-git tag v1.2.3
-git push origin v1.2.3
-```
-
-The workflow configuration lives in `.github/workflows/release.yml`, while the GoReleaser settings are defined in `.goreleaser.yml`.
-
 ## Why?
 
 NTLM and Kerberos relaying attacks are really powerful, however often times can be impractical, too noisy or too disruptive. This is because at times it is not enough to (or we simply aren't able to):

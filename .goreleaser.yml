@@ -28,3 +28,6 @@ archives:
 
 changelog:
   use: git
+
+release:
+  disable: true
