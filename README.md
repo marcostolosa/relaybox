@@ -14,6 +14,17 @@ GOOS=windows go build -o relaybox.exe ./cmd/relaybox
 
 You can also find prebuilt binaries on the Releases page.
 
+## Releasing
+
+Tagged releases are automated via [GoReleaser](https://goreleaser.com/). Push a semver tag (for example `v1.2.3`) and GitHub Actions will build the Windows artefact and publish it on GitHub Releases:
+
+```bash
+git tag v1.2.3
+git push origin v1.2.3
+```
+
+The workflow configuration lives in `.github/workflows/release.yml`, while the GoReleaser settings are defined in `.goreleaser.yml`.
+
 ## Why?
 
 NTLM and Kerberos relaying attacks are really powerful, however often times can be impractical, too noisy or too disruptive. This is because at times it is not enough to (or we simply aren't able to):
@@ -108,7 +119,7 @@ This allows to transparently relay a victim visiting a site to LDAP or another H
 ./relaybox.exe -raddr 10.10.14.11 -http -pfx server.pfx -pfx-pass '1234'
 ```
 
-This behaves exactly like the HTTP takeover, except it will use a provided PFX file and password to create an HTTPS version of the attack as well. You whould extract the PFX from the compromised server so that it is as legitimate as possible. You can find a powershell utility to do this in: [http/export-pfx.ps1](http/export-pfx.ps1).
+This behaves exactly like the HTTP takeover, except it will use a provided PFX file and password to create an HTTPS version of the attack as well. You whould extract the PFX from the compromised server so that it is as legitimate as possible. You can find a powershell utility to do this in: [powershell/export-pfx.ps1](powershell/export-pfx.ps1).
 
 ### Take over MSSQL (experimental)
 

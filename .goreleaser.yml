@@ -1,0 +1,30 @@
+project_name: relaybox
+
+env:
+  - CGO_ENABLED=0
+
+builds:
+  - id: relaybox
+    main: ./cmd/relaybox
+    binary: relaybox
+    goos:
+      - windows
+    goarch:
+      - amd64
+    ldflags:
+      - -s -w
+
+archives:
+  - id: relaybox
+    builds:
+      - relaybox
+    format: zip
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - LICENSE
+      - README.md
+      - powershell/**
+      - mssql/*.ps1
+
+changelog:
+  use: git
